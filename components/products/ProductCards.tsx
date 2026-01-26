@@ -15,6 +15,7 @@ export default function ProductCard({product}: { product: Product}) {
                     width={400}
                     height={600}
                     unoptimized={true}
+                    priority={true}
                 />
                 <div className="p-3 space-y-2">
                     <h3 className="text-xl font-bold text-gray-600">{product.name}</h3>
