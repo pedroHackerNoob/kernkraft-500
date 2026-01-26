@@ -16,6 +16,9 @@ export const useStore = create<Store>()(devtools((set,get)=>({
         let contents: ShoppingCart =[]
         const duplicate = get().contents.findIndex(item => item.productId === productId)
         if(duplicate >=0){
+            if (get().contents[duplicate].quantity >= get().contents[duplicate].stock) return alert(
+                `El producto ${product.name} no puede ser agregado, ya se encuentra agregado en el carrito`
+            )
             contents = get().contents.map(item => item.productId === productId ? {...item, quantity: item.quantity + 1} : item)
         }else{
             contents = [...get().contents, {
