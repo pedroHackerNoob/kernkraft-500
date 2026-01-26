@@ -1,5 +1,6 @@
 import {CategoryWithProductsResponseSchema} from "@/src/schema";
 import ProductCard from "@/components/products/ProductCards";
+import {redirect} from "next/navigation";
 
 type Params = Promise<{categoryId: string}>;
 
@@ -7,6 +8,9 @@ async function getProducts(categoryId: string) {
     const url = `${process.env.API_URL}/categories/${categoryId}?products=true`
     const req = await fetch(url)
     const json = await req.json()
+    if (!req.ok){
+        redirect('/1')
+    }
     return CategoryWithProductsResponseSchema.parse(json)
 }
 export default async function StorePage({params}: { params: Params}) {
