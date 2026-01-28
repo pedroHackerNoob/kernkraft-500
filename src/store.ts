@@ -1,6 +1,6 @@
 import {create} from "zustand";
 import {devtools} from "zustand/middleware";
-import {Product, ShoppingCart} from "@/src/schema";
+import {CouponResponseSchema, Product, ShoppingCart} from "@/src/schema";
 
 interface Store {
     total: number
@@ -50,12 +50,13 @@ export const useStore = create<Store>()(devtools((set,get)=>({
         set(()=> ({total}))
     },
     applyCoupon: async (couponName) => {
-        const req = await fetch('coupons/api', {
+        const req = await fetch('/coupons/api', {
             method: 'POST',
             body: JSON.stringify({
                 coupon_name :couponName
             })})
         const json = await req.json()
-        console.log(json)
+        console.log('json\n',json)
+        const coupon = CouponResponseSchema.safeParse(json)
     },
 })))

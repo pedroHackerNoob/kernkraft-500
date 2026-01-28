@@ -7,5 +7,5 @@ export async function POST(request:Request){
         body:JSON.stringify(coupon)
     })
     const response = await req.json()
-    return Response.json(response)
+    return Response.json({...response, status: req.status})
 }

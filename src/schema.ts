@@ -32,6 +32,13 @@ const shoppingCartContentSchema = ProductSchema.pick({
     quantity: z.number()
 })
 export const shoppingCartSchema = z.array(shoppingCartContentSchema)
+export const CouponResponseSchema = z.object({
+    message: z.string(),
+    coupon: z.object({ // El objeto real está aquí dentro
+        name: z.string().default(""),
+        discount: z.coerce.number().min(0).max(100).default(0),
+    }),
+})
 
 export type Product = z.infer<typeof ProductSchema>
 export type ShoppingCart = z.infer<typeof shoppingCartSchema>
