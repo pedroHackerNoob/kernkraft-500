@@ -56,14 +56,22 @@ export const useStore = create<Store>()(devtools((set,get)=>({
         set(()=> ({total}))
     },
     applyCoupon: async (couponName) => {
-        const req = await fetch('/coupons/api', {method: 'POST', body: JSON.stringify({ coupon_name :couponName })})
-        const json = await req.json()
-        try{
-            const couponData = CouponResponseSchema.safeParse(json)
-            if(!couponData.success) throw new Error('error')
-            set(()=> ({json, coupon: couponData.data}))
-        }catch (e){
-            console.log('falso\n',e)
+        try {
+            const req = await fetch('/coupons/api', {
+                method: 'POST',
+                body: JSON.stringify({ coupon_name: couponName })
+            });
+
+            const json = await req.json();
+            const result = CouponResponseSchema.safeParse(json);
+            if (result.success) {
+                set({ coupon: result.data });
+            }else {
+                set({ coupon: result.data });
+            }
+        } catch (e) {
+            console.error('Error al aplicar cupón:', e);
         }
     },
+
 })))

@@ -6,7 +6,7 @@ import {useStore} from "@/src/store";
 export default function CouponForm() {
     const applyCoupon =  useStore(state=> state.applyCoupon)
     const coupon = useStore(state=> state.coupon)
-    const handelSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         const formData = new FormData(e.currentTarget)
         const couponName = formData.get('coupon_name')as string
@@ -18,7 +18,7 @@ export default function CouponForm() {
             <p className="py-5 font-bold border-t border-gray-300">Canjear Cupón</p>
             <form
                 className="flex"
-                onSubmit={handelSubmit}
+                onSubmit={handleSubmit}
             >
                 <input
                     type="text"
