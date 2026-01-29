@@ -64,6 +64,7 @@ export const useStore = create<Store>()(devtools((set,get)=>({
 
             const json = await req.json();
             const result = CouponResponseSchema.safeParse(json);
+
             if (result.success) {
                 set({ coupon: result.data });
             }else {
@@ -73,5 +74,4 @@ export const useStore = create<Store>()(devtools((set,get)=>({
             console.error('Error al aplicar cupón:', e);
         }
     },
-
 })))
