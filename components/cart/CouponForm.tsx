@@ -5,12 +5,12 @@ import {useStore} from "@/src/store";
 
 export default function CouponForm() {
     const applyCoupon =  useStore(state=> state.applyCoupon)
-
+    const coupon = useStore(state=> state.coupon)
     const handelSubmit = async (e: FormEvent<HTMLFormElement>) => {
-
         e.preventDefault()
         const formData = new FormData(e.currentTarget)
         const couponName = formData.get('coupon_name')as string
+        if (!couponName) return
         await applyCoupon(couponName)
     }
     return (
@@ -32,6 +32,7 @@ export default function CouponForm() {
                     value='Canjear'
                 />
             </form>
+            {coupon.message? (<p className="py-4 text-sm text-center font-bold">{coupon.message}</p>): null}
         </>
     )
 }

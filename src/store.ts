@@ -1,10 +1,11 @@
 import {create} from "zustand";
 import {devtools} from "zustand/middleware";
-import {CouponResponseSchema, Product, ShoppingCart} from "@/src/schema";
+import {Coupon, CouponResponseSchema, Product, ShoppingCart} from "@/src/schema";
 
 interface Store {
     total: number
     contents: ShoppingCart
+    coupon : Coupon
     addtoCart: (product: Product) => void
     updateStock: (id: Product['id'], quantity: number) => void
     clearCart: (id: Product['id']) => void
@@ -15,6 +16,11 @@ interface Store {
 export const useStore = create<Store>()(devtools((set,get)=>({
     total: 0,
     contents: [],
+    coupon: {
+        name: '',
+        discount: 0,
+        message: ''
+    },
     addtoCart: (product) => {
         const {id: productId, category,...data}= product
         let contents: ShoppingCart =[]
@@ -50,13 +56,14 @@ export const useStore = create<Store>()(devtools((set,get)=>({
         set(()=> ({total}))
     },
     applyCoupon: async (couponName) => {
-        const req = await fetch('/coupons/api', {
-            method: 'POST',
-            body: JSON.stringify({
-                coupon_name :couponName
-            })})
+        const req = await fetch('/coupons/api', {method: 'POST', body: JSON.stringify({ coupon_name :couponName })})
         const json = await req.json()
-        console.log('json\n',json)
-        const coupon = CouponResponseSchema.safeParse(json)
+        try{
+            const couponData = CouponResponseSchema.safeParse(json)
+            if(!couponData.success) throw new Error('error')
+            set(()=> ({json, coupon: couponData.data}))
+        }catch (e){
+            console.log('falso\n',e)
+        }
     },
 })))

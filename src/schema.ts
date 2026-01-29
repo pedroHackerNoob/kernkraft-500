@@ -27,11 +27,10 @@ const shoppingCartContentSchema = ProductSchema.pick({
     price: true,
     image: true,
     stock: true
-}).extend({
-    productId: z.number(),
-    quantity: z.number()
-})
+}).extend({productId: z.number(), quantity: z.number()})
+
 export const shoppingCartSchema = z.array(shoppingCartContentSchema)
+
 export const CouponResponseSchema = z.object({
     message: z.string(),
     coupon: z.object({ // El objeto real está aquí dentro
@@ -43,3 +42,4 @@ export const CouponResponseSchema = z.object({
 export type Product = z.infer<typeof ProductSchema>
 export type ShoppingCart = z.infer<typeof shoppingCartSchema>
 export type CartItem = z.infer<typeof shoppingCartContentSchema>
+export type Coupon = z.infer<typeof CouponResponseSchema>
