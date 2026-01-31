@@ -6,12 +6,13 @@ export default function SubmitOrder() {
     const coupon = useStore(state=> state.coupon.coupon?.name)
     const contents = useStore(state=> state.contents)
     const order= {coupon,contents}
-    console.log('SubmitOrder:\n',order)
     const submitOrderWithData = submitOrderAction.bind(null,order)
     const [state, dispatch]= useActionState(submitOrderWithData,{
         errors:[],
         succes: '',
     })
+
+    console.log(state)
     return(
         <form action={dispatch}>
 
