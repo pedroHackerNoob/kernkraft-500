@@ -94,7 +94,6 @@ export const useStore = create<Store>()(devtools((set,get)=>({
         const subTotal = get().contents.reduce((total, item) => total + (item.price * item.quantity), 0)
         const discount = ((get().coupon.coupon?.discount || 0) / 100) * subTotal
         const total = subTotal - discount
-        console.log(total)
         set(()=> ({discount, total}))
     },
     clearOrder: ()=>{
