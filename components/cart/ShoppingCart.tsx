@@ -4,6 +4,7 @@ import {useStore} from "@/src/store";
 import ShoppingCartItem from "@/components/cart/ShoppingCardItem";
 import Amount from "@/components/cart/Amount";
 import CouponForm from "@/components/cart/CouponForm";
+import SubmitOrder from "@/components/cart/SubmitOrder";
 
 export function ShoppingCart() {
     const contents = useStore((state)=> state.contents)
@@ -28,6 +29,7 @@ export function ShoppingCart() {
                         <Amount label="Total a pagar" amount={total}/>
                     </dl>
                     <CouponForm/>
+                    <SubmitOrder/>
                 </>
             ): (<p className="text-xl text-center text-gray-900">No hay productos en el carrito</p>)}
         </>
