@@ -80,3 +80,4 @@ export type Product = z.infer<typeof ProductSchema>
 export type ShoppingCart = z.infer<typeof shoppingCartSchema>
 export type CartItem = z.infer<typeof shoppingCartContentSchema>
 export type Coupon = z.infer<typeof CouponResponseSchema>
+export type Transaction = z.infer<typeof TransactionResponseSchema>
