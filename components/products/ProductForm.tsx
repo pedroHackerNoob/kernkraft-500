@@ -1,10 +1,10 @@
-import {categoriesResponseSchema} from "@/src/schema";
+import {CategoriesResponseSchema} from "@/src/schema";
 
 async function getCategories(){
     const url = `${process.env.API_URL}/categories`;
     const request = await fetch(url);
     const json = await request.json();
-    const categories = categoriesResponseSchema.safeParse(json);
+    const categories = CategoriesResponseSchema.safeParse(json);
     return categories;
 }
 export default async function ProductForm() {

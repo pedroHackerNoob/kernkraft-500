@@ -1,12 +1,12 @@
 import Logo from "@/components/UI/Logo";
-import {categoriesResponseSchema} from "@/src/schema";
+import {CategoriesResponseSchema} from "@/src/schema";
 import Link from "next/link";
 
 async function getCategories() {
     const url = `${process.env.API_URL}/categories`
     const req = await fetch(url)
     const json = await req.json()
-    return categoriesResponseSchema.parse(json)
+    return CategoriesResponseSchema.parse(json)
 }
 export default async function MainNav() {
     const categories =await getCategories()
