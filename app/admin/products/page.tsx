@@ -34,6 +34,7 @@ export default async function ProductsPage({searchParams}: {searchParams: Search
             <Pagination
                 page={+page}
                 totalPages={+totalPages}
+                baseUrl="/admin/products"
             />
         </>
     )
