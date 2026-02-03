@@ -7,7 +7,6 @@ type ActionStateType = {
 
 }
 export async function addProduct(prevState: ActionStateType, formData: FormData) {
-    console.log('addproduct')
 
     const product = ProductFormSchema.safeParse({
         name : formData.get('name'),
