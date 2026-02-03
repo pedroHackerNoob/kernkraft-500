@@ -14,6 +14,9 @@ export default function AddProductForm({children}:{children:React.ReactNode}) {
         if (state.errors){
             state.errors.forEach( error => toast.error(error));
         }
+        if (state.success){
+            toast.success(state.success)
+        }
     },[state])
 
 
