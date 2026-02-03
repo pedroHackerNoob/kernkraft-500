@@ -4,6 +4,7 @@ import ProductsTable from "@/components/products/ProductsTable";
 import {redirect} from "next/navigation";
 import {isValidPage} from "@/src/utils";
 import Pagination from "@/components/UI/Pagination";
+import Link from "next/link";
 async function getProducts(take:number, skip:number){
     const url = `${process.env.API_URL}/products?take=${take}&skip=${skip}`;
     const req = await fetch(url)
@@ -27,6 +28,10 @@ export default async function ProductsPage({searchParams}: {searchParams: Search
 
     return (
         <>
+            <Link href="/admin/products/new"
+                  className={"rounded bg-green-400 font-bold py-2 px-10"}>
+                Nuevo Producto
+            </Link>
             <Heading>Administrar Productos</Heading>
             <ProductsTable
                 products = {products}
