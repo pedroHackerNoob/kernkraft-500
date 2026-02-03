@@ -42,15 +42,15 @@ export default async function ProductForm() {
 
             <div className="space-y-2 ">
                 <label
-                    htmlFor="inventory"
+                    htmlFor="stock"
                     className="block"
                 >Inventario</label>
                 <input
-                    id="inventory"
+                    id="stock"
                     type="number"
                     placeholder="Cantidad Disponible"
                     className="border border-gray-300 w-full p-2"
-                    name="inventory"
+                    name="stock"
                     min={0}
                 />
             </div>
