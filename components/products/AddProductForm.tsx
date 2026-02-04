@@ -11,7 +11,7 @@ export default function AddProductForm({children}:{children:React.ReactNode}) {
 
     const [state, dispatch] = useActionState(addProduct,{
         errors:[],
-        successs:''
+        success:''
     });
 
     useEffect(()=>{

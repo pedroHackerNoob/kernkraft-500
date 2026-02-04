@@ -3,7 +3,7 @@ import {ErrorResponseSchema, ProductFormSchema} from "@/src/schema";
 
 type ActionStateType = {
     errors: string[]
-    successs: string
+    success: string
 
 }
 export async function addProduct(prevState: ActionStateType, formData: FormData) {
@@ -18,7 +18,7 @@ export async function addProduct(prevState: ActionStateType, formData: FormData)
     if (!product.success) {
         return {
             errors: product.error.issues.map(iss => iss.message),
-            succes:''
+            success:''
         }
     }
 
@@ -36,7 +36,7 @@ export async function addProduct(prevState: ActionStateType, formData: FormData)
         const errors = ErrorResponseSchema.parse(json)
         return {
             errors: errors.message.map(issue => issue),
-            succes:''
+            success:''
         }
     }
     return {
