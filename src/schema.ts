@@ -6,8 +6,9 @@ export const ProductSchema = z.object({
     image: z.string(),
     price: z.coerce.number(),
     stock: z.number(),
-    category: z.number().or(z.object({
-        id: z.number()
+    category: (z.object({
+        id: z.number(),
+        name: z.string()
     })).nullish()
 })
 
