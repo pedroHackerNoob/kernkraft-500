@@ -2,19 +2,20 @@
 
 import {useDropzone} from "react-dropzone";
 import {useCallback} from "react";
+import {uploadImage} from "@/actions/upload-image-action";
 
 export default function UploadProductImage(){
     const onDrop = useCallback(async (files: File[])=>{
         const formData = new FormData();
         files.forEach(file=>{
-            formData.append('file', file.name);
+            formData.append('file', file);
         })
+        return await uploadImage(formData);
     },[])
     const {getRootProps, getInputProps, isDragActive,isDragReject,isDragAccept} = useDropzone({
         accept: {
             'image/jpeg' : ['.jpg'],
-            'image/png' : ['.png'],
-            'image/gif' : ['.gif'],
+            'image/png' : ['.png']
         },
         onDrop,
         maxFiles: 1
