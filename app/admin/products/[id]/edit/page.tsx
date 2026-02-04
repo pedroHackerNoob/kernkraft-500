@@ -12,7 +12,8 @@ async function getProduct(id: string) {
     if (!request.ok) {
         notFound()
     }
-    return ProductSchema.parse(json);
+    const product = ProductSchema.parse(json);
+    return product
 }
 type Params = Promise<{id: string}>
 export default async function EditProductPage({params} : {params: Params}) {
@@ -28,7 +29,6 @@ export default async function EditProductPage({params} : {params: Params}) {
             <UpdateProductForm>
                 <ProductForm product = {product} />
             </UpdateProductForm>
-            EditProductPage
         </>
     )
 }
