@@ -4,17 +4,17 @@ const nextConfig: NextConfig = {
     images:{
         remotePatterns: [
             {
-                protocol: 'http',
-                hostname: process.env.DOMAIN!
-            },
-            {
                 protocol: 'https',
-                hostname: process.env.DOMAIN!
+                hostname: 'kernkraft-400.onrender.com'
             },
             {
                 protocol:'https',
                 hostname: 'res.cloudinary.com',
-            }
+            },
+            // {
+            //     protocol: 'http',
+            //     hostname: process.env.DOMAIN!
+            // },
         ]
     }
 };
