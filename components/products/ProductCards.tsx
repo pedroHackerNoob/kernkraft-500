@@ -1,5 +1,5 @@
 import {Product} from "@/src/schema";
-import {formatCurrency} from "@/src/utils";
+import {formatCurrency, getImagePath} from "@/src/utils";
 import Image from "next/image";
 import AddProductButton from "@/components/products/AddProductButton";
 
@@ -10,7 +10,7 @@ export default function ProductCard({product}: { product: Product}) {
         >
             <div>
                 <Image
-                    src={`${process.env.API_URL}/img/${product.image}`}
+                    src={getImagePath(product.image)}
                     alt={`imagen de ${product.name}`}
                     width={400}
                     height={600}
