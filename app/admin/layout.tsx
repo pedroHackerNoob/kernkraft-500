@@ -1,9 +1,7 @@
 import ToastNotification from "@/components/UI/ToastNotification";
 import AdminNav from "@/components/UI/AdminNav";
 
-export default function RootLayout({
-                                       children,
-                                   }: Readonly<{
+export default function RootLayout({children,}: Readonly<{
     children: React.ReactNode;
 }>) {
     return (
