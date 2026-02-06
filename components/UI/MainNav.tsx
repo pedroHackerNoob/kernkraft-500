@@ -1,6 +1,7 @@
 import Logo from "@/components/UI/Logo";
 import {CategoriesResponseSchema} from "@/src/schema";
 import Link from "next/link";
+import {getImagePath} from "@/src/utils";
 
 async function getCategories() {
     const url = `${process.env.API_URL}/categories`
@@ -8,24 +9,37 @@ async function getCategories() {
     const json = await req.json()
     return CategoriesResponseSchema.parse(json)
 }
-export default async function MainNav() {
-    const categories =await getCategories()
-    return (
-        <header className="px-10 py-5 bg-gray-700 flex flex-col md:flex-row justify-between ">
-            <div className="flex justify-center">
-                <Logo/>
-            </div>
+function getCategoriesOffLine(){
+    const json = [
+        {
+            id: 1,
+            name: "home",
+        },
+        {
+            id: 2,
+            name: "about",
+        },
 
-            <nav className="flex flex-col md:flex-row gap-2 items-center mt-5 md:mt-0">
+    ]
+    return CategoriesResponseSchema.parse(json)
+}
+
+export default async function MainNav() {
+    const categories =await getCategoriesOffLine()
+
+    return (
+        <header className="px-10 py-1 gap-1 bg-fondo1 grid">
+            <Logo/>
+            <nav className="flex flex-col justify-end md:flex-row gap-2 items-center mt-5 md:mt-0 border-t border-fondo2 capitalize">
                 {categories.map(category => (
                     <Link
                         key={category.id}
                         href={`/${category.id}`}
-                        className="text-white hover:text-green-400 font-bold p-2">
+                        className="text-white hover:text-fondo2 hover:underline  font-bold p-2">
 
                         {category.name}
                     </Link>))}
-                <Link href={'/admin/sales'} className={'hidden rounded bg-green-400 font-bold py-2 px-10 text-purple-600 capitalize'}>panel admin</Link>
+                <Link href={'/admin/sales'} className={'hidden rounded bg-green-400 font-bold py-2 px-10 text-purple-600 '}>panel admin</Link>
             </nav>
         </header>
     )
